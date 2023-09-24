@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi Step Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <!--Sidebar Start-->
+        <div class="steps-col">
+
+            <div class="step">
+                <div class="step-num one">1</div>
+                <div class="labels">
+                    <span class="step-label">Step 1</span>
+                    <span>YOUR INFO</span>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num two">2</div>
+                <div class="labels">
+                    <span class="step-label">Step 2</span>
+                    <span>SELECT PLAN</span>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num three">3</div>
+                <div class="labels">
+                    <span class="step-label">Step 3</span>
+                    <span>ADD-ONS</span>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num four">4</div>
+                <div class="labels">
+                    <span class="step-label">Step 4</span>
+                    <span>SUMMARY</span>
+                </div>
+            </div>
+            
+        </div>
+        <!--Sidebar End-->
+
+
+        <!--Forms Start-->
+        <form id="form1">
+            <h1>Personal Info</h1>
+            <p>Please provide your name, email address, and phone number.</p>
+
+            <div class="input-label">
+                <label>Name</label>
+                <input type="text"placeholder="e.g Stephen King">
+            </div>
+
+            <div class="input-label">
+                <label>Email Address</label>
+                <input type="email" placeholder="e.g stephenking@lorem.com">
+              </div>
+        
+            <div class="input-label">
+                <label>Phone Number</label>
+                <input type="number"placeholder="e.g +1 234 567 890">
+            </div>
+
+            <div class="btn-container">
+                <button type="button" id="next-1" class="next">Next Step</button>
+            </div>
+        </form>
+
+        <form id="form2">
+            <h1>Select your plan</h1>
+            <p>You have the option of monthly or yearly billing.</p>
+
+            <div class="billing-options">
+
+                <div class="options">
+                    <img src="./assets/images/icon-arcade.svg" alt="arcade icon">
+                    <h6>Arcade</h6>
+                    <p class="billing">$9/mo</p>
+                    <p class="free"></p>
+                </div>
+
+                <div class="options">
+                    <img src="./assets/images/icon-advanced.svg" alt="advanced icon">
+                    <h6>Advanced</h6>
+                    <p class="billing">$12/mo</p>
+                    <p class="free"></p>
+                </div>
+
+                <div class="options">
+                    <img src="./assets/images/icon-pro.svg" alt="pro icon">
+                    <h6>Arcade</h6>
+                    <p class="billing">$15/mo</p>
+                    <p class="free"></p>
+                </div>
+
+            </div>
+
+            <div class="toggle-btn">
+               <span id="monthly">Monthly</span>
+                <input type="checkbox" id="check">
+                <label for="check" class="button"></label>
+                <span id="yearly">Yearly</span>
+            </div>
+
+            <div class="btn-container">
+                <button type="button" id="prev-1">Go Back</button>
+                <button type="button" id="next-2" class="next">Next Step</button>
+            </div>
+
+        </form>
+
+        <!--Forms End-->
+    </div>
+    <script src="./script.js"></script>
+</body>
+</html>
