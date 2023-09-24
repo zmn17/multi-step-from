@@ -229,7 +229,7 @@ form .next:hover {
     margin-top: 3.2%;
 }
 
-.btn-container #prev-1 {
+.btn-container .prev {
     position: absolute;
     bottom: 1rem;
     right: 82%;
@@ -241,10 +241,45 @@ form .next:hover {
     color: hsl(213, 96%, 18%);
 }
 
-#prev-1:hover {
+.prev:hover {
     color: hsl(243, 100%, 62%);
 }
 
+#form3{
+    left: -900px;
+}
+
+form .checkbox-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+}
+
+form .checkbox-container .checkboxes {
+    display: flex;
+    border: 2px solid hsl(217, 100%, 97%);
+    height: 4.5rem;
+    border-radius: 7px;
+    gap: 5%;
+    position: relative;
+}
+
+.checkboxes input {
+    margin-left: 5%;
+    width: 1.1rem;
+}
+
+.checkboxes .checkbox-labels {
+    margin: 3% 0;
+}
+
+.checkboxes span {
+    position: absolute;
+    left: 85%;
+    top: 40%;
+    color: hsl(243, 100%, 62%);
+}
 
 
 
