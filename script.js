@@ -2,12 +2,15 @@
 const form1 = document.getElementById('form1');
 const form2 = document.getElementById('form2');
 const form3 = document.getElementById('form3');
+const form4 = document.getElementById('form4');
 
 const nextOne = document.getElementById('next-1');
 const prevOne = document.getElementById('prev-1');
 const nextTwo = document.getElementById('next-2');
 const nextThree = document.getElementById('next-3');
 const prevTwo = document.getElementById('prev-2');
+const confirm = document.getElementById('confirm');
+const prevThree = document.getElementById('prev-3');
 
 const step1 = document.querySelector('.one');
 const step2 = document.querySelector('.two');
@@ -17,6 +20,7 @@ const step4 = document.querySelector('.four');
 const toggle = document.getElementById('check');
 
 const checkbox_input = document.querySelectorAll('.checkbox');
+const adsOnAmount = document.querySelectorAll('.ads-on-amount');
 
 step1.style.backgroundColor = "hsl(229, 24%, 87%)";
 step1.style.color = "#000";
@@ -60,6 +64,10 @@ toggle.addEventListener('change', () => {
             free[i].textContent = "2 months free";
         }
 
+        adsOnAmount[0].textContent = "+$10/yr";
+        adsOnAmount[1].textContent = "+$20/yr";
+        adsOnAmount[2].textContent = "+$20/yr";
+
     } else {
         monthly.style.color = "hsl(231, 11%, 63%)";
         yearly.style.color = "#000";
@@ -70,6 +78,10 @@ toggle.addEventListener('change', () => {
         for(let i = 0; i < free.length; i++){
             free[i].textContent = "";
         }
+
+        adsOnAmount[0].textContent = "+$1/yr";
+        adsOnAmount[1].textContent = "+$2/yr";
+        adsOnAmount[2].textContent = "+$2/yr";
     }
 });
 
@@ -79,6 +91,7 @@ nextTwo.addEventListener('click', () => {
     step3.style.backgroundColor = "hsl(229, 24%, 87%)";
     step3.style.color = "#000"
     step2.style.backgroundColor = "";
+    step2.style.color = "#fff";
 });
 
 prevTwo.addEventListener('click', () => {
@@ -101,4 +114,23 @@ checkbox_input.forEach((checkbox, i) => {
             checkboxes[i].style.border = "2px solid hsl(217, 100%, 97%)";
         }
     });
+});
+
+nextThree.addEventListener('click', () => {
+    form3.style.left = '-500px';
+    form4.style.left = '350px';
+    step4.style.backgroundColor = "hsl(229, 24%, 87%)";
+    step4.style.color = "#000"
+    step3.style.backgroundColor = "";
+    step3.style.color = "#fff";
+})
+
+prevThree.addEventListener("click", () => {
+    form4.style.left = '900px';
+    form3.style.left = '350px';
+    
+    step4.style.backgroundColor = "";
+    step4.style.color = "#fff"
+    step3.style.backgroundColor = "hsl(229, 24%, 87%)";
+    step3.style.color = "#000";
 });

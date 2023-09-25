@@ -125,7 +125,7 @@
                         <h4>Online service</h4>
                         <p>Access to multiplayer games</p>
                     </div>
-                    <span>+$1/mo</span>
+                    <span class="ads-on-amount">+$1/mo</span>
                 </div>
                 <div class="checkboxes">
                     <input type="checkbox" class="checkbox">
@@ -133,7 +133,7 @@
                         <h4>Larger storage</h4>
                         <p>Extra 1TB of cloud save</p>
                     </div>
-                    <span>+$2/mo</span>
+                    <span class="ads-on-amount">+$2/mo</span>
                 </div>
                 <div class="checkboxes">
                     <input type="checkbox" class="checkbox">
@@ -141,7 +141,7 @@
                         <h4>Customizable Profile</h4>
                         <p>Access to multiplayer games</p>
                     </div>
-                    <span>+$2/mo</span>
+                    <span class="ads-on-amount">+$2/mo</span>
                 </div>
             </div>
             
@@ -151,7 +151,53 @@
             </div>
         </form>
 
+        <form id="form4">
+            <h1>Finishing up</h1>
+            <p>Double-everything looks OK before confirming.</p>
+
+            <div class="calculations">
+
+                <div class="subtotal-heading">
+                    <div class="subtotal-button-label">
+                        <h4 id="options-heading">Arcade <span id="yearly-monthly">(Monthly)</span></h4>
+                        <button type="button">Change</button>
+                    </div>
+                    <span id="subtotal">$9/mo</span>
+                </div>
+
+                <hr>
+
+                <div class="ads-on-container">
+                    <div class="ads-on-section">
+                        <p id="selected-online-services">Online service</p>
+                        <span class="extra-amounts">+$1/mo</span>
+                    </div>
+    
+                    <div class="ads-on-section">
+                        <p id="selected-larger-storage">Larger storage</p>
+                        <span class="extra-amounts">+$2/mo</span>
+                    </div>
+    
+                    <div class="ads-on-section">
+                        <p id="selected-customizable-profile">Customizable Profile</p>
+                        <span class="extra-amounts">+$2/mo</span>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="Total">
+                <p>Total<span>(per month)</span></p>
+                <span id="total-amount">+$12/mo</span>
+            </div>
+            
+            <div class="btn-container">
+                <button type="button" id="prev-3" class="prev">Go Back</button>
+                <button type="button" id="confirm" class="next">Confirm</button>
+            </div>
+        </form>
+
         <!--Forms End-->
+
     </div>
     <script src="./script.js"></script>
 </body>

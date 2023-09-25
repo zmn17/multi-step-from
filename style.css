@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap');
 
+
+/* GENERAL */
 * {
     padding: 0;
     margin: 0;
@@ -10,6 +12,7 @@ body {
     background-color: hsl(217, 100%, 97%);
 }
 
+/* CONTAINER     */
 .container {
     width: 850px;
     height: 500px;
@@ -22,6 +25,8 @@ body {
     overflow: hidden;
 }
 
+
+/* NAV START */
 .steps-col {
     background: url("./assets/images/bg-sidebar-desktop.svg");
     background-size: contain;
@@ -65,6 +70,11 @@ body {
     color: hsl(231, 11%, 63%);
     font-weight: 100;
 }
+/* NAV END */
+
+
+
+/* FORM 1 START */
 
 .container form{
     width: 450px;
@@ -109,10 +119,8 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .btn-container {
     width: 100%;
-    margin: 10% auto;
     display: flex;
     justify-content: flex-end;
-    align-items: center;
     position: relative;
 }
 
@@ -125,11 +133,18 @@ form .next {
     border: none;
     border-radius: 7px;
     cursor: pointer;
+    position: absolute;
+    top: 1rem;
 }
 
 form .next:hover {
     background-color: hsl(243, 100%, 62%);
 }
+
+/* FORM 1 END */
+
+
+/* FORM 2 START */
 
 #form2 {
     left: 900px;
@@ -225,28 +240,31 @@ form .next:hover {
     display: none;
 }
 
-.btn-container #next-2 {
-    margin-top: 3.2%;
-}
-
 .btn-container .prev {
     position: absolute;
-    bottom: 1rem;
+    top: 1.5rem;
     right: 82%;
     background: none;
     border: none;
     width: 24%;
     font-size: 1rem;
     cursor: pointer;
-    color: hsl(213, 96%, 18%);
+    color: hsl(231, 11%, 63%);
+    font-weight: bold;
 }
 
 .prev:hover {
     color: hsl(243, 100%, 62%);
 }
+/* FORM 2 END */
+
+
+
+
+/* FORM 3 START */
 
 #form3{
-    left: -900px;
+    left: 900px;
 }
 
 form .checkbox-container {
@@ -265,9 +283,11 @@ form .checkbox-container .checkboxes {
     position: relative;
 }
 
-.checkboxes input {
+.checkbox {
     margin-left: 5%;
-    width: 1.1rem;
+    margin-top: 5%;
+    width: 1.2rem;
+    height: 1.2rem;
 }
 
 .checkboxes .checkbox-labels {
@@ -281,12 +301,110 @@ form .checkbox-container .checkboxes {
     color: hsl(243, 100%, 62%);
 }
 
+#form3 .btn-container {
+    top: 2.25rem;
+}
+
+/* FORM 3 END */
 
 
 
 
+/* FORM 4 START*/
+#form4 {
+    left: 900px;
+}
 
+.calculations {
+    background-color: hsl(217, 100%, 97%);
+    height: 12rem;
+    border-radius: 10px;
+    position: relative;
+}
 
+.subtotal-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5%;
+}
 
+.subtotal-heading #subtotal {
+    font-weight: bold;
+}
 
+.calculations span {
+    color: hsl(213, 96%, 18%);
+}
 
+.subtotal-heading .subtotal-button-label {
+    width: 100%;
+}
+
+.subtotal-button-label button {
+    text-decoration: underline;
+    border: none;
+    background: none;
+    color: hsl(231, 11%, 63%);
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.subtotal-button-label button:hover {
+    color: hsl(243, 100%, 62%);
+}
+
+hr {
+    opacity: 27%;
+    margin-left: 5.5%;
+    margin-right: 5.5%;
+    margin-top: 2%;
+}
+
+.ads-on-section {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+.ads-on-section p, .Total p {
+    margin-left: 5.5%;
+    margin-top: 4%;
+}
+
+.ads-on-section span {
+    margin-right: 5.5%;
+}
+
+.calculations .ads-on-section {
+    margin-top: -2rem;
+}
+
+.ads-on-section p, .ads-on-section p {
+    margin-top: -2px;
+}
+
+.calculations .ads-on-container {
+    margin-top: 3rem;
+}
+
+.Total {
+    display: flex;
+    justify-content: space-between;
+}
+
+#total-amount {
+    color: hsl(243, 100%, 62%);
+    font-weight: bold;
+    margin-right: 5.5%;
+    margin-top: 4%;
+}
+
+.Total p {
+    font-size: 14px;
+}
+
+#form4 .btn-container {
+    top: 1.48rem;
+}
+/* FORM 4 END */
