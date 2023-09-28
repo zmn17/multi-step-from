@@ -164,9 +164,13 @@ form .next:hover {
     position: relative;
 }
 
-.options:hover {
+.billing-options input:checked + .options {
     background-color: hsl(217, 100%, 97%);
     border: 2px solid hsl(243, 100%, 84%);
+}
+
+.billing-options input{
+    display: none;
 }
 
 .options img {
