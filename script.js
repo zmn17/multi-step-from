@@ -1,4 +1,3 @@
-
 const form1 = document.getElementById('form1');
 const form2 = document.getElementById('form2');
 const form3 = document.getElementById('form3');
@@ -47,8 +46,6 @@ prevOne.addEventListener('click', () => {
     step2.style.color = "#fff";
 });
 
-
-
 nextTwo.addEventListener('click', () => {
   form2.style.left = "-650px";
   form3.style.left = "350px";
@@ -66,6 +63,7 @@ prevTwo.addEventListener('click', () => {
   step2.style.backgroundColor = "hsl(229, 24%, 87%)";
   step2.style.color = "#000"
 });
+
 
 // if the toggle button is checked then it is 'yearly' if not 'monthly' 
 toggle.addEventListener('change', () => {
@@ -182,7 +180,6 @@ const pricing = {
         subtotal += toggle.checked ? pricing[option.name.toLowerCase()].yearly : pricing[option.name.toLowerCase()].monthly;
       }
     });
-  
     return subtotal;
   }
   
@@ -202,10 +199,10 @@ const pricing = {
   updatePricing();
 
 
-  
+
 // Define pricing for the 'extra services'
 const extra_prices = {
-  online_services: {
+  online_service: {
     yearly: 10,
     monthly: 1,
   },
@@ -221,9 +218,9 @@ const extra_prices = {
 
 // Accessing the 'extra services' input 'checkbox'
 const extra_options = [
-  { element: document.getElementById('o-services'), name: 'online_services' },
-  { element: document.getElementById('l-storage'), name: 'larger_storage' },
-  { element: document.getElementById('c-profile'), name: 'customizable_profile' },
+  { element: document.getElementById('o-services'), name: 'Online_Service' },
+  { element: document.getElementById('l-storage'), name: 'Larger_Storage' },
+  { element: document.getElementById('c-profile'), name: 'Customizable_Profile' },
 ];
 
 // Adding event listeners for the 'extra services'
@@ -233,49 +230,64 @@ extra_options.forEach(option => {
 
 toggle.addEventListener('change', updateExtraPricing);
 
-function calculateExtraTotal() {
-  let total = 0;
-
-  extra_options.forEach(option => {
-    if (option.element.checked) {
-      total = toggle.checked ? extra_prices[option.name.toLowerCase()].yearly : extra_prices[option.name.toLowerCase()].monthly;
-    }
-  });
-  return total;
+// Function to calculate the total for a specific extra service
+function calculateExtraTotal(extraServiceName, isYearly) {
+  const priceData = extra_prices[extraServiceName.toLowerCase()];
+  return isYearly ? priceData.yearly : priceData.monthly;
 }
 
 function updateExtraPricing() {
-  const os_title = document.getElementById('extra-service1');
-  const ls_title = document.getElementById('extra-service2');
-  const cf_title = document.getElementById('extra-service3');
-  const extra_amounts = document.querySelectorAll('.extra-amounts');
-
+  finalTotal = 0;
   const isYearly = toggle.checked;
-  const total = calculateExtraTotal();
 
-  // Reset titles and amounts
-  os_title.textContent = '';
-  ls_title.textContent = '';
-  cf_title.textContent = '';
-  extra_amounts.forEach(amount => {
-    amount.textContent = '';
-  });
+  // Total '(per month)' or '(per year)'
+  const yr_mo = document.getElementById('total-title');
 
+  // Clear the existing extra service sections
+  const adsOnContainer = document.querySelector('.ads-on-container');
+  adsOnContainer.innerHTML = '';
+
+  // Calculate and display extra service sections
   extra_options.forEach(option => {
     if (option.element.checked) {
-      if (option.name === 'online_services') {
-        os_title.textContent = 'Online Services';
-        extra_amounts[0].textContent = `+$${total}${isYearly ? '/yr' : '/mo'}`;
-      }else if (option.name === 'larger_storage') {
-        ls_title.textContent = 'Larger Storage';
-        extra_amounts[1].textContent = `+$${total}${isYearly ? '/yr' : '/mo'}`;
-      }else if (option.name === 'customizable_profile') {
-        cf_title.textContent = 'Customizable Profile';
-        extra_amounts[2].textContent = `+$${total}${isYearly ? '/yr' : '/mo'}`;
-      }
+      const adsOnSection = document.createElement('div');
+      adsOnSection.className = 'ads-on-section';
+      const adsOnTitle = document.createElement('p');
+      const adsOnPrice = document.createElement('span');
+
+      const extraTotal = calculateExtraTotal(option.name, isYearly);
+      adsOnTitle.textContent = option.name.replace(/_/g, ' ');
+      adsOnPrice.textContent = `+$${extraTotal}${isYearly ? '/yr' : '/mo'}`;
+
+      adsOnSection.appendChild(adsOnTitle);
+      adsOnSection.appendChild(adsOnPrice);
+      adsOnContainer.appendChild(adsOnSection);
     }
   });
+
+  isYearly ? yr_mo.textContent = ' ' + '(per year)' : yr_mo.textContent = ' ' + '(per month)';
 }
 
 // Call updateExtraPricing initially to set the initial state based on default selections
 updateExtraPricing();
+
+function calculateFinalTotal() {
+   // Total amount: '120/yr'
+   const totalAmount = document.getElementById('total-amount');
+  let total = 0;
+
+  options.forEach(option => {
+    if(option.element.checked){
+      total += toggle.checked ? pricing[option.name.toLowerCase()].yearly : pricing[option.name.toLowerCase()].monthly;
+    }
+  });
+
+  extra_options.forEach(option => {
+    if(option.element.checked){
+      total += calculateExtraTotal(option.name, toggle.checked);
+    }
+  });
+  totalAmount.textContent = `$${total}${toggle.checked ? '/yr' : '/mo'}` 
+}
+
+calculateFinalTotal();
