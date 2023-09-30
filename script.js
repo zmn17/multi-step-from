@@ -21,18 +21,63 @@ const toggle = document.getElementById('check');
 const checkbox_input = document.querySelectorAll('.checkbox');
 const adsOnAmount = document.querySelectorAll('.ads-on-amount');
 
+
+// for input validation
+// Function to validate the email field
+function validateEmail() {
+  const emailInput = document.getElementById('email-input');
+  const errorSpan = emailInput.nextElementSibling;
+  const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+  if (!emailPattern.test(emailInput.value)) {
+      errorSpan.textContent = 'Invalid email address';
+      return false;
+  } else {
+      errorSpan.textContent = '';
+      return true;
+  }
+}
+
+// Function to validate the phone number field
+function validatePhoneNumber() {
+  const phoneInput = document.getElementById('number-input');
+  const errorSpan = phoneInput.nextElementSibling;
+  const phonePattern = /^[+]?[0-9]{1,3}[-s. ]?[(]?[0-9]{1,3}[)]?[-s. ]?[0-9]{1,5}[-s. ]?[0-9]{1,5}$/;
+
+  if (!phonePattern.test(phoneInput.value)) {
+      errorSpan.textContent = 'Invalid phone number';
+      return false;
+  } else {
+      errorSpan.textContent = '';
+      return true;
+  }
+}
+
+// Function to validate the entire form
+function validateForm() {
+  const isNameValid = validateName();
+  const isEmailValid = validateEmail();
+  const isPhoneValid = validatePhoneNumber();
+
+  return isNameValid && isEmailValid && isPhoneValid;
+}
+
+
+// default: for step1
 step1.style.backgroundColor = "hsl(229, 24%, 87%)";
 step1.style.color = "#000";
 
 nextOne.addEventListener('click', () => {
-    form1.style.left = "-500px";
-    form2.style.left = "350px";
+    if(validateForm()){
+      form1.style.left = "-500px";
+      form2.style.left = "350px";
 
-    step1.style.backgroundColor = "";
-    step1.style.color = "#fff";
+      step1.style.backgroundColor = "";
+      step1.style.color = "#fff";
 
-    step2.style.backgroundColor = "hsl(229, 24%, 87%)";
-    step2.style.color = "#000";
+      step2.style.backgroundColor = "hsl(229, 24%, 87%)";
+      step2.style.color = "#000";
+    }
 });
 
 prevOne.addEventListener('click', () => {
@@ -47,12 +92,31 @@ prevOne.addEventListener('click', () => {
 });
 
 nextTwo.addEventListener('click', () => {
-  form2.style.left = "-650px";
-  form3.style.left = "350px";
-  step3.style.backgroundColor = "hsl(229, 24%, 87%)";
-  step3.style.color = "#000"
-  step2.style.backgroundColor = "";
-  step2.style.color = "#fff";
+  const isOptionSelected = options.some(option => option.element.checked);
+  if(isOptionSelected){
+    form2.style.left = "-650px";
+    form3.style.left = "350px";
+    step3.style.backgroundColor = "hsl(229, 24%, 87%)";
+    step3.style.color = "#000"
+    step2.style.backgroundColor = "";
+    step2.style.color = "#fff";
+
+  }else{
+    const subs_options = document.querySelectorAll('.options');
+    subs_options.forEach(op => {
+      op.style.borderColor = "#FF0000";
+    })
+    
+    options.forEach(option => {
+      option.element.addEventListener('change', () => {
+        if(options.some(option => option.element.checked)){
+          subs_options.forEach(op => {
+            op.style.borderColor = "";
+          });
+        }
+      });
+    });
+  }
 });
 
 prevTwo.addEventListener('click', () => {
@@ -136,6 +200,21 @@ prevThree.addEventListener("click", () => {
     step3.style.color = "#000";
 });
 
+ // Function to validate the name field
+ function validateName() {
+  const nameInput = document.getElementById('name-input');
+  const errorSpan = nameInput.nextElementSibling;
+
+  if (nameInput.value.trim() === '') {
+      errorSpan.textContent = 'Name is required';
+      return false;
+  } else {
+      errorSpan.textContent = '';
+      return true;
+  }
+}
+
+
 
 // Define your pricing amounts for each option
 const pricing = {
@@ -168,7 +247,7 @@ const pricing = {
   
  // Add click event listeners to the options and toggle switch
 options.forEach(option => {
-  option.element.addEventListener('click', () => {
+  option.element.addEventListener('input', () => {
     updatePricing(); // Call the updatePricing function on click
     updateOptionSelection(option.element); // Update the selection status
   });
@@ -182,17 +261,17 @@ function calculateSubtotal() {
 
   options.forEach(option => {
     if (option.element.checked) {
+      updateOptionSelection(option.element);
+      optionsHeading.innerHTML = option.name;
       subtotal += toggle.checked ? pricing[option.name.toLowerCase()].yearly : pricing[option.name.toLowerCase()].monthly;
     }
   });
+
   return subtotal;
 }
 
 // Function to update pricing based on user selections
 function updatePricing() {
-  const selectedOptions = options.filter(option => option.element.checked);
-
-  optionsHeading.innerHTML = selectedOptions.map(option => option.name).join(', ');
   const isYearly = toggle.checked;
   period.textContent = isYearly ? 'Yearly' : 'Monthly';
 
@@ -234,7 +313,7 @@ const extra_options = [
 
 // Adding event listeners for the 'extra services'
 extra_options.forEach(option => {
-  option.element.addEventListener('change', updateExtraPricing);
+  option.element.addEventListener('input', updateExtraPricing);
 });
 
 toggle.addEventListener('change', updateExtraPricing);
@@ -342,6 +421,4 @@ confirmBtn.addEventListener('click', () => {
 });
 
 
-// add a p for indicating an error message when the input is left blank
-// same with the options -> red border
-// 
+

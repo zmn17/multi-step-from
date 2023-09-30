@@ -38,7 +38,7 @@ body {
     margin-left: 2%;
     display: flex;
     gap: 6%;
-    color: hsl(229, 24%, 87%);
+    color: #fff;
     font-weight: bold;
 }
 
@@ -93,8 +93,7 @@ form p {
 form .input-label {
     display: flex;
     flex-direction: column;
-    gap: 5px;
-    margin: 8% auto;
+    margin: 6% auto;
 }
 
 form .input-label input {
@@ -168,6 +167,7 @@ form .next:hover {
     background-color: hsl(217, 100%, 97%);
     border: 2px solid hsl(243, 100%, 84%);
 }
+
 
 .billing-options input{
     display: none;
@@ -436,3 +436,7 @@ hr {
     color: hsl(231, 11%, 63%);
 }
 
+.input-label span {
+    color: red;
+    font-size: 12px;
+}
