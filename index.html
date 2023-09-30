@@ -53,17 +53,17 @@
 
             <div class="input-label">
                 <label>Name</label>
-                <input type="text"placeholder="e.g Stephen King">
+                <input type="text"placeholder="e.g Stephen King" required>
             </div>
 
             <div class="input-label">
                 <label>Email Address</label>
-                <input type="email" placeholder="e.g stephenking@lorem.com">
+                <input type="email" placeholder="e.g stephenking@lorem.com" required>
               </div>
         
             <div class="input-label">
                 <label>Phone Number</label>
-                <input type="number"placeholder="e.g +1 234 567 890">
+                <input type="number"placeholder="e.g +1 234 567 890" required>
             </div>
 
             <div class="btn-container">
@@ -79,26 +79,33 @@
                 
                 <input type="checkbox" id="select-arcade">
                 <div class="options">
-                    <img src="./assets/images/icon-arcade.svg" alt="arcade icon">
-                    <label for="select-arcade" class="option-1"><h6>Arcade</h6></label>
-                    <p class="billing">$9/mo</p>
-                    <p class="free"></p>
+                    <label for="select-arcade">
+                        <img src="./assets/images/icon-arcade.svg" alt="arcade icon">
+                        <h6>Arcade</h6>
+                        <p class="billing">$9/mo</p>
+                        <p class="free"></p>
+                    </label>
+                    
                 </div>
 
                 <input type="checkbox" id="select-advanced">
                 <div class="options">
-                    <img src="./assets/images/icon-advanced.svg" alt="advanced icon">
-                    <label for="select-advanced"><h6>Advanced</h6></label>
-                    <p class="billing">$12/mo</p>
-                    <p class="free"></p>
+                    <label for="select-advanced">
+                        <img src="./assets/images/icon-advanced.svg" alt="advanced icon">
+                        <h6>Advanced</h6>
+                        <p class="billing">$12/mo</p>
+                        <p class="free"></p>
+                    </label>
                 </div>
 
                 <input type="checkbox" id="select-pro">
                 <div class="options">
-                    <img src="./assets/images/icon-pro.svg" alt="pro icon">
-                    <label for="select-pro"><h6>Pro</h6></label>
-                    <p class="billing">$15/mo</p>
-                    <p class="free"></p>
+                    <label for="select-pro">
+                        <img src="./assets/images/icon-pro.svg" alt="pro icon">
+                        <h6>Pro</h6>
+                        <p class="billing">$15/mo</p>
+                        <p class="free"></p>
+                    </label>
                 </div>
 
             </div>
@@ -125,24 +132,30 @@
                 <div class="checkboxes">
                     <input type="checkbox" class="checkbox" id="o-services">
                     <div class="checkbox-labels">
-                        <h4>Online service</h4>
-                        <p>Access to multiplayer games</p>
+                        <label for="o-services">
+                            <h4>Online service</h4>
+                            <p>Access to multiplayer games</p>
+                        </label>
                     </div>
                     <span class="ads-on-amount">+$1/mo</span>
                 </div>
                 <div class="checkboxes">
                     <input type="checkbox" class="checkbox" id="l-storage">
                     <div class="checkbox-labels">
-                        <h4>Larger storage</h4>
-                        <p>Extra 1TB of cloud save</p>
+                        <label for="l-storage">
+                            <h4>Larger storage</h4>
+                            <p>Extra 1TB of cloud save</p>
+                        </label>
                     </div>
                     <span class="ads-on-amount">+$2/mo</span>
                 </div>
                 <div class="checkboxes">
                     <input type="checkbox" class="checkbox" id="c-profile">
                     <div class="checkbox-labels">
-                        <h4>Customizable Profile</h4>
-                        <p>Access to multiplayer games</p>
+                        <label for="c-profile">
+                            <h4>Customizable Profile</h4>
+                            <p>Access to multiplayer games</p>
+                        </label>
                     </div>
                     <span class="ads-on-amount">+$2/mo</span>
                 </div>
@@ -163,7 +176,7 @@
                 <div class="subtotal-heading">
                     <div class="subtotal-button-label">
                         <h4 id="options-heading"><span id="yearly-monthly"></span></h4>
-                        <button type="button">Change</button>
+                        <button type="button" id="change-btn">Change</button>
                     </div>
                     <span id="subtotal"></span>
                 </div>
@@ -177,7 +190,7 @@
             </div>
             <div class="Total">
                 <p>Total<span id="total-title"></span></p>
-                <span id="total-amount">+$12/mo</span>
+                <span id="total-amount"></span>
             </div>
             
             <div class="btn-container">
@@ -187,7 +200,11 @@
         </form>
 
         <!--Forms End-->
-
+        <div class="last-step">
+            <img src="./assets/images/icon-thank-you.svg" alt="thank-you">
+            <h1>Thank you!</h1>
+            <p>Thanks for confirming your subscription! We hope you have fun using our platform. If you ever need support, please feel free to email us at support@loregaming.com.</p>
+        </div>
     </div>
     <script src="./script.js"></script>
 </body>

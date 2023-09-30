@@ -76,7 +76,7 @@ body {
 
 /* FORM 1 START */
 
-.container form{
+.container form {
     width: 450px;
     position: absolute;
     left: 40%;
@@ -411,4 +411,28 @@ hr {
 #form4 .btn-container {
     top: 1.48rem;
 }
+
+
+
+
 /* FORM 4 END */
+
+
+.container .last-step {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 450px;
+    position: absolute;
+    left: 110%;
+    top: 0;
+    transform: 0.5s;
+}
+
+.container .last-step p {
+    color: hsl(231, 11%, 63%);
+}
+

@@ -152,7 +152,9 @@ const pricing = {
       yearly: 150,
     },
   };
+
   
+  let finalTotal = 0;
   // Define your HTML elements
   const options = [
     { element: document.getElementById('select-arcade'), name: 'Arcade' },
@@ -164,41 +166,48 @@ const pricing = {
   const optionsHeading = document.getElementById('options-heading');
   const period = document.getElementById('yearly-monthly');
   
-  // Add change event listeners to the options and toggle switch
-  options.forEach(option => {
-    option.element.addEventListener('change', updatePricing);
+ // Add click event listeners to the options and toggle switch
+options.forEach(option => {
+  option.element.addEventListener('click', () => {
+    updatePricing(); // Call the updatePricing function on click
+    updateOptionSelection(option.element); // Update the selection status
   });
-  
-  toggle.addEventListener('change', updatePricing);
-  
-  // Function to calculate the subtotal based on the selected options and toggle
-  function calculateSubtotal() {
-    let subtotal = 0;
-  
-    options.forEach(option => {
-      if (option.element.checked) {
-        subtotal += toggle.checked ? pricing[option.name.toLowerCase()].yearly : pricing[option.name.toLowerCase()].monthly;
-      }
-    });
-    return subtotal;
-  }
-  
-  // Function to update pricing based on user selections
-  function updatePricing() {
-    const selectedOptions = options.filter(option => option.element.checked);
-    
-    optionsHeading.innerHTML = selectedOptions.map(option => option.name).join(', ');
-    const isYearly = toggle.checked;
-    period.textContent = isYearly ? 'Yearly' : 'Monthly';
-  
-    const total = calculateSubtotal();
-    subtotal.textContent = `$${total}${isYearly ? '/yr' : '/mo'}`;
-  }
-  
-  // Call updatePricing initially to set the initial state based on default selections
-  updatePricing();
+});
 
+toggle.addEventListener('change', updatePricing);
 
+// Function to calculate the subtotal based on the selected options and toggle
+function calculateSubtotal() {
+  let subtotal = 0;
+
+  options.forEach(option => {
+    if (option.element.checked) {
+      subtotal += toggle.checked ? pricing[option.name.toLowerCase()].yearly : pricing[option.name.toLowerCase()].monthly;
+    }
+  });
+  return subtotal;
+}
+
+// Function to update pricing based on user selections
+function updatePricing() {
+  const selectedOptions = options.filter(option => option.element.checked);
+
+  optionsHeading.innerHTML = selectedOptions.map(option => option.name).join(', ');
+  const isYearly = toggle.checked;
+  period.textContent = isYearly ? 'Yearly' : 'Monthly';
+
+  const total = calculateSubtotal();
+  subtotal.textContent = `$${total}${isYearly ? '/yr' : '/mo'}`;
+}
+
+// Function to update option selection status
+function updateOptionSelection(selectedOption) {
+  options.forEach(option => {
+    if (option.element !== selectedOption) {
+      option.element.checked = false; // Uncheck other options
+    }
+  });
+}
 
 // Define pricing for the 'extra services'
 const extra_prices = {
@@ -237,7 +246,6 @@ function calculateExtraTotal(extraServiceName, isYearly) {
 }
 
 function updateExtraPricing() {
-  finalTotal = 0;
   const isYearly = toggle.checked;
 
   // Total '(per month)' or '(per year)'
@@ -258,6 +266,7 @@ function updateExtraPricing() {
       const extraTotal = calculateExtraTotal(option.name, isYearly);
       adsOnTitle.textContent = option.name.replace(/_/g, ' ');
       adsOnPrice.textContent = `+$${extraTotal}${isYearly ? '/yr' : '/mo'}`;
+      finalTotal += extraTotal;
 
       adsOnSection.appendChild(adsOnTitle);
       adsOnSection.appendChild(adsOnPrice);
@@ -268,26 +277,71 @@ function updateExtraPricing() {
   isYearly ? yr_mo.textContent = ' ' + '(per year)' : yr_mo.textContent = ' ' + '(per month)';
 }
 
-// Call updateExtraPricing initially to set the initial state based on default selections
 updateExtraPricing();
 
+// Function to calculate the final total
 function calculateFinalTotal() {
-   // Total amount: '120/yr'
-   const totalAmount = document.getElementById('total-amount');
-  let total = 0;
+  finalTotal = 0; // Reset finalTotal to 0
 
+  // Calculate subscription subtotal
   options.forEach(option => {
-    if(option.element.checked){
-      total += toggle.checked ? pricing[option.name.toLowerCase()].yearly : pricing[option.name.toLowerCase()].monthly;
+    if (option.element.checked) {
+      finalTotal += toggle.checked ? pricing[option.name.toLowerCase()].yearly : pricing[option.name.toLowerCase()].monthly;
     }
   });
 
+  // Calculate extra services total
   extra_options.forEach(option => {
-    if(option.element.checked){
-      total += calculateExtraTotal(option.name, toggle.checked);
+    if (option.element.checked) {
+      finalTotal += calculateExtraTotal(option.name, toggle.checked);
     }
   });
-  totalAmount.textContent = `$${total}${toggle.checked ? '/yr' : '/mo'}` 
 }
 
-calculateFinalTotal();
+// Function to update the total amount display
+function updateTotalAmount() {
+  const isYearly = toggle.checked;
+  const totalAmount = document.getElementById('total-amount');
+
+  calculateFinalTotal(); // Calculate the final total
+
+  totalAmount.textContent = `$${finalTotal}${isYearly ? '/yr' : '/mo'}`;
+}
+
+// Call updateTotalAmount initially to set the initial state based on default selections
+updateTotalAmount();
+
+// Adding event listeners for the 'extra services' and subscription options
+options.forEach(option => {
+  option.element.addEventListener('change', updateTotalAmount);
+});
+
+extra_options.forEach(option => {
+  option.element.addEventListener('change', updateTotalAmount);
+});
+
+toggle.addEventListener('change', updateTotalAmount);
+
+
+const changeBtn = document.getElementById('change-btn');
+changeBtn.addEventListener('click', () => {
+  form4.style.left = '900px';
+  form2.style.left = '350px';
+  step4.style.backgroundColor = "";
+  step4.style.color = "#fff";
+  step2.style.backgroundColor = 'hsl(229, 24%, 87%)';
+  step2.style.color = "#000";
+});
+
+const confirmBtn = document.getElementById('confirm');
+const last_step = document.querySelector('.last-step');
+confirmBtn.addEventListener('click', () => {
+  form4.style.left = '900px';
+  last_step.style.left =  '40%';
+
+});
+
+
+// add a p for indicating an error message when the input is left blank
+// same with the options -> red border
+// 
